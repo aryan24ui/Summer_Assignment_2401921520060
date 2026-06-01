@@ -1,10 +1,19 @@
+import java.util.*;
+
 class Solution {
-    public int maxDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+
+            map.put(nums[i], i);
         }
-        int lh = maxDepth(root.left);
-        int rh = maxDepth(root.right);
-        return Math.max(lh, rh) + 1;
+
+        return new int[]{}; // just for safety
     }
 }
