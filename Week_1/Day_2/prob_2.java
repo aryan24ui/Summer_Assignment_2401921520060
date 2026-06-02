@@ -1,23 +1,16 @@
+import java.util.*;
+
 class Solution {
-    public int maxArea(int[] height) {
-        int maxWater = 0;
-        int lp = 0;
-        int rp = height.length - 1;
+    public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
 
-        while (lp < rp) {
-            // calculate water area
-            int ht = Math.min(height[lp], height[rp]);
-            int width = rp - lp;
-            int currWater = ht * width;
-            maxWater = Math.max(maxWater, currWater);
-
-            // update ptr
-            if (height[lp] < height[rp]) {
-                lp++;
-            } else {
-                rp--;
+        for (int num : nums) {
+            if (set.contains(num)) {
+                return true;
             }
+            set.add(num);
         }
-        return maxWater;
+
+        return false;
     }
 }
